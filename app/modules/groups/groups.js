@@ -27,6 +27,6 @@ const GroupsStack = createStackNavigator(
 
 export default class Groups extends Component{
     render(){
-        return <GroupsStack></GroupsStack>
+        return <GroupsStack><Text></Text></GroupsStack>
     }
 }

@@ -3,6 +3,8 @@ import {View, Text, Image, ScrollView, FlatList} from 'react-native';
 import {createStackNavigator, } from 'react-navigation';
 import {HeaderTopColumn, HeaderBottomColumn} from './components/headerColumn.js'
 import {ShowGroups} from './components/pageBody.js'
+import GroupModal from './components/groupModal.js'
+import reducer from '../../stateManager/reducers/grouping.js'
 
 
 //创建导航路由
@@ -50,6 +52,7 @@ class ItemRoot extends Component{
     render(){
         return (
             <View style={{flex:1,width:375,marginTop:20}}>
+                <GroupModal></GroupModal>
                 <Image style={{width:375, height:100, backgroundColor:'black'}} source={require('../../images/choicecoupon.png')}/>
                 <HeaderTopColumn navigation={this.props.navigation}></HeaderTopColumn>
                 <HeaderBottomColumn></HeaderBottomColumn>

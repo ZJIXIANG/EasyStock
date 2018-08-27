@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, } from 'react-native';
+import {View, Text,} from 'react-native';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
+
 
 class MoreInfo extends Component{
     render(){

@@ -3,6 +3,14 @@ import {View, Text, StyleSheet} from 'react-native'
 import Barcode from 'react-native-vector-icons/MaterialCommunityIcons'
 import Search from 'react-native-vector-icons/Feather'
 
+import {createStore} from 'redux'
+import reducer from '../../../stateManager/reducers/grouping.js'
+import {change} from '../../../stateManager/actions/index.js'
+
+const store = createStore(reducer)
+store.subscribe(() => console.log('State updated!', store.getState()) )
+
+
 export class HeaderTopColumn extends Component{
     constructor(props){
         super(props)
@@ -31,7 +39,7 @@ export class HeaderBottomColumn extends Component{
                     <Text>Amount</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:"space-between"}}>
-                    <Text>Samples</Text>
+                    <Text onPress={() => store.dispatch(change())}>Samples</Text>
                     <Text>3</Text>
                 </View>
                 

@@ -18,7 +18,6 @@ export class ShowItems extends Component{
 
     render(){
         const items = this.props.data.items
-        console.log(items)
         return(
             <FlatList
                 data={items}

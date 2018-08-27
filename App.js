@@ -15,5 +15,8 @@ export default createBottomTabNavigator(
 		Groups,
 		Overview,
 		Settings,
-    },
+		},
+		{
+			initialRouteName:'Overview'
+		}
 )

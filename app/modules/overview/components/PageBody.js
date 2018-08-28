@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import CommonColumnImg from '../../../components/commonColumnImg.js'
 
 
 export class PageBody extends Component{
@@ -9,7 +8,6 @@ export class PageBody extends Component{
             <View>
                 <Text>Slideshow</Text>
                 <Text>Statistics</Text>
-                <CommonColumnImg></CommonColumnImg>
             </View>
         )
     }

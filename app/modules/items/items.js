@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, Image, ScrollView, FlatList} from 'react-native';
+import {View, Text, Image, ScrollView, FlatList, Dimensions} from 'react-native';
 import {createStackNavigator, } from 'react-navigation';
-import {HeaderTopColumn, HeaderBottomColumn} from './components/headerColumn.js'
+import {HeaderTopColumn, ItemCount, ItemInfo} from './components/headerColumn.js'
 import {ShowGroups} from './components/pageBody.js'
 import GroupModal from './components/groupModal.js'
 import reducer from '../../stateManager/reducers/grouping.js'
+import {toDeviceSize} from '../../utils/sizeTransform'
+import CommonColumnImg from '../../CommonComponents/hasImgColumnForItem'
 
 
 //创建导航路由
@@ -51,16 +53,21 @@ class ItemRoot extends Component{
     }
     render(){
         return (
-            <View style={{flex:1,width:375,marginTop:20}}>
+            <View style={{flex:1}}>
                 <GroupModal></GroupModal>
-                <Image style={{width:375, height:100, backgroundColor:'black'}} source={require('../../images/choicecoupon.png')}/>
+                <Image style={{width:toDeviceSize(750), height:toDeviceSize(278)}} source={require('../../images/items_bg.png')}/>
                 <HeaderTopColumn navigation={this.props.navigation}></HeaderTopColumn>
-                <HeaderBottomColumn></HeaderBottomColumn>
-                <ShowGroups></ShowGroups>
+                <ItemCount></ItemCount>
+                <ItemInfo></ItemInfo>
+                <CommonColumnImg></CommonColumnImg>
+                {/* <ShowGroups></ShowGroups> */}
             </View>
         )   
     }
 } 
+
+
+
 
 const ItemStack = createStackNavigator(
     {

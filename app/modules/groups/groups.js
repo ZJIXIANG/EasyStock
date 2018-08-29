@@ -35,10 +35,10 @@ class GroupsRoot extends Component{
 const GroupsStack = createStackNavigator(
     {
         GroupsRoot,
-        SearchGroup,
-        GroupsList,
-        GroupsInfo,
-        AddGroups,
+        // SearchGroup,
+        // GroupsList,
+        // GroupsInfo,
+        // AddGroups,
     }
 )
 

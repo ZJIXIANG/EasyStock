@@ -3,6 +3,7 @@ import {Dimensions} from 'react-native';
 export const DESIGN_WINDOW_WIDTH = 750;
 export const SCALE = Dimensions.get('window').width/DESIGN_WINDOW_WIDTH;
 export const width = Dimensions.get('window').width
+export const HEIGHT = Dimensions.get("window").height
 
 module.exports = {
     DESIGN_WINDOW_WIDTH:DESIGN_WINDOW_WIDTH,

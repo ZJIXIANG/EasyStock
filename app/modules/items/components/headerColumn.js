@@ -1,16 +1,6 @@
 import React,{Component} from 'react'
-import {View, Text, StyleSheet, Image} from 'react-native'
-import Barcode from 'react-native-vector-icons/MaterialCommunityIcons'
-import Search from 'react-native-vector-icons/Feather'
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native'
 import {toDeviceSize, width} from '../../../utils/sizeTransform'
-
-
-import {createStore} from 'redux'
-import {Provider, connect} from 'react-redux'
-import rootReducer from '../../../stateManager/reducers/index.js'
-
-const store = createStore(rootReducer)
-// store.subscribe(() => console.log('State updated!', store.getState()) )
 
 
 export class HeaderTopColumn extends Component{
@@ -21,10 +11,16 @@ export class HeaderTopColumn extends Component{
         const {navigate} = this.props.navigation
         return(
             <View style={styles.headerContent}>
-                <Image style={styles.scanCode} source={require('../../../images/nav_icon.png')} onPress={() => navigate('ScanCode')}/>
+                <TouchableOpacity onPress={() => navigate('ScanCode')} activeOpacity={1} style={styles.scanCode}>
+                    <Image source={require('../../../images/nav_icon.png')}/>
+                </TouchableOpacity>
                 <Text style={styles.title}>Items</Text>
-                <Image style={styles.search} source={require('../../../images/nav_搜索icon.png')} onPress={() => navigate('AddItem')}/>
-                <Image style={styles.addItem} source={require('../../../images/nav_添加icon.png')} onPress={() => navigate('SearchItem')}/>
+                <TouchableOpacity onPress={() => navigate('SearchItem')} activeOpacity={1} style={styles.search}>
+                    <Image source={require('../../../images/nav_搜索icon.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate('AddItem')} activeOpacity={1} style={styles.addItem}>
+                    <Image source={require('../../../images/nav_添加icon.png')} />
+                </TouchableOpacity>
             </View>
         )
     }
@@ -63,11 +59,17 @@ const styles = StyleSheet.create({
         alignItems:'center',
         position:'absolute',
         top:toDeviceSize(63),
+        paddingRight:toDeviceSize(30),
+        paddingLeft:toDeviceSize(30),
+        justifyContent:"space-between"
     },
-    scanCode:{
-        position:'absolute',
-        left:toDeviceSize(30),
-    },
+    // scanCode:{
+    //     marginLeft:toDeviceSize(30),
+    //     position:'absolute',
+    //     left:toDeviceSize(30),
+    //     height:toDeviceSize(65),
+    //     width:toDeviceSize(65)
+    // },
     title:{
         width:toDeviceSize(99),
         height:toDeviceSize(43),
@@ -75,19 +77,17 @@ const styles = StyleSheet.create({
         fontSize:toDeviceSize(36),
         color:'#FFFFFF',
         textAlign:'center',
-        position:'absolute',
-        left:toDeviceSize(326)
     },
     search:{
         position:'absolute',
         left:toDeviceSize(552),
 
     },
-    addItem:{
-        position:'absolute',
-        // left:toDeviceSize(687-33),
-        right:toDeviceSize(30)
-    },
+    // addItem:{
+    //     position:'absolute',
+    //     // left:toDeviceSize(687-33),
+    //     right:toDeviceSize(30)
+    // },
     itemCount:{
         width:toDeviceSize(750),
         height:toDeviceSize(31),

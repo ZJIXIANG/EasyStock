@@ -4,25 +4,13 @@ import {createStackNavigator, } from 'react-navigation';
 import {HeaderTopColumn, ItemCount, ItemInfo} from './components/headerColumn.js'
 import {ShowGroups} from './components/pageBody.js'
 import GroupModal from './components/groupModal.js'
-import reducer from '../../stateManager/reducers/grouping.js'
 import {toDeviceSize} from '../../utils/sizeTransform'
 import CommonColumnImg from '../../CommonComponents/hasImgColumnForItem'
+import SearchItem from './components/searchPage'
 
 
 //创建导航路由
 
-class SearchItem extends Component{
-    static navigationOptions = {
-        title:'搜索'
-    }
-    render(){
-        return(
-            <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-                <Text>搜索</Text>
-            </View>
-        )
-    }
-}
 
 class AddItem extends Component{
     static navigationOptions = {
@@ -72,12 +60,12 @@ class ItemRoot extends Component{
 const ItemStack = createStackNavigator(
     {
         ItemRoot,
+        ScanCode,
         SearchItem,
         AddItem,
-        ScanCode,
     },
     {
-        initialRouteKey:'ItemRoot',
+        initialRouteName:'ItemRoot'
     }
 )
 

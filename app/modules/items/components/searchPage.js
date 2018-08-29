@@ -163,9 +163,9 @@ export default class SearchItem extends Component{
         return(
             <View>
                 <TitleBar navigation={this.props.navigation}></TitleBar>
-                {/* {search}
-                <HasSearchComponent/> */}
-                <SearchResult></SearchResult>
+                {search}
+                <HasSearchComponent/>
+                {/* <SearchResult></SearchResult> */}
             </View>
         )
     }

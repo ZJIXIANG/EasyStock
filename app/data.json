@@ -41,54 +41,54 @@
         {"title":"this is item2","info":"Computer Stuff/PC sd","count":3}
     ],
     "editLidt" : [
-        {"key" : "Name" , "data" : [{"title":"Name","value":"cable"}]},
-        {"key" : "Group" , "data" : [{"title":"Groups","value":"Goups"}]},
+        {"key" : "Name" , "data" : [{"key":0 ,"title":"Name","value":"cable"}]},
+        {"key" : "Group" , "data" : [{"key":1 ,"title":"Groups","value":"Goups"}]},
         {"key" : "Information" , "data" : [
-                {"title":"Category","value":"compter cablles"},
-                {"title":"Description","value":"a-male to B-male，USB 2.0 certified..."},
-                {"title":"ID Tag","value":2324234324324},
-                {"title":"Prince","value":8.99},
-                {"title":"Photo","value":3},
-                {"title":"Supplier","value":"Dell computer"},
-                {"title":"Stock Shortage","value":10}
+                {"key":2 ,"title":"Category","value":"compter cablles"},
+                {"key":3 ,"title":"Description","value":"a-male to B-male，USB 2.0 certified..."},
+                {"key":4 ,"title":"ID Tag","value":2324234324324},
+                {"key":5 ,"title":"Prince","value":8.99},
+                {"key":6 ,"title":"Photo","value":3},
+                {"key":7 ,"title":"Supplier","value":"Dell computer"},
+                {"key":8 ,"title":"Stock Shortage","value":10}
             ]  
         },
         {"key" : "Group properties" , "data" : [
-                {"title":"Color","value":"white"},
-                {"title":"Specific attribute","value":"nothin"}
+                {"key":9 ,"title":"Color","value":"white"},
+                {"key":10 ,"title":"Specific attribute","value":"nothin"}
             ]  
         },
         {"key" : "Quantity" , "data" : [
-                {"title":"Warehouse #1/shelf 1A","value":10},
-                {"title":"Warehouse #1/shelf 1B","value":7},
-                {"title":"History","value":"nothing"}
+                {"key":11 ,"title":"Warehouse #1/shelf 1A","value":10},
+                {"key":12 ,"title":"Warehouse #1/shelf 1B","value":7},
+                {"key":13 ,"title":"History","value":"nothing"}
             ]  
         },
         {"key" : "Weight,Dimensions" , "data" : [
-                {"title":"Weight","value":0.2},
-                {"title":"Total weight","value":3.14},
-                {"title":"Width","value":1},
-                {"title":"Length","value":8.99},
-                {"title":"Height","value":3},
-                {"title":"Volume","value":30.0002},
-                {"title":"Total volume","value":51.002}
+                {"key":14 ,"title":"Weight","value":0.2},
+                {"key":15 ,"title":"Total weight","value":3.14},
+                {"key":16 ,"title":"Width","value":1},
+                {"key":17 ,"title":"Length","value":8.99},
+                {"key":18 ,"title":"Height","value":3},
+                {"key":19 ,"title":"Volume","value":30.0002},
+                {"key":20 ,"title":"Total volume","value":51.002}
             ]  
         },
         {"key" : "Dates" , "data" : [
-                {"title":"Last inventory date","value":"January 30, 2019"},
-                {"title":"Expiry date","value":""},
-                {"title":"Purchase date","value":""}
+                {"key":21 ,"title":"Last inventory date","value":"January 30, 2019"},
+                {"key":22 ,"title":"Expiry date","value":""},
+                {"key":23 ,"title":"Purchase date","value":""}
             ]  
         },
         {"key" : "Dates" , "data" : [
-                {"title":"Created on","value":"January 30, 2019"},
-                {"title":"last updates","value":""}
+                {"key":24 ,"title":"Created on","value":"January 30, 2019"},
+                {"key":25 ,"title":"last updates","value":""}
             ]  
         },
             {"key" : "PDF" , "data" : [
-                {"title":"PDF Document","value":""},
-                {"title":"PDF Changelog","value":""},
-                {"title":"PDF Barcode","Value":""}
+                {"key":26 ,"title":"PDF Document","value":""},
+                {"key":27 ,"title":"PDF Changelog","value":""},
+                {"key":28 ,"title":"PDF Barcode","Value":""}
             ]  
         }
     ]

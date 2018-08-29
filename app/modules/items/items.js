@@ -5,8 +5,8 @@ import {HeaderTopColumn, ItemCount, ItemInfo} from './components/headerColumn.js
 import {ShowGroups} from './components/pageBody.js'
 import GroupModal from './components/groupModal.js'
 import {toDeviceSize} from '../../utils/sizeTransform'
-import CommonColumnImg from '../../CommonComponents/hasImgColumnForItem'
 import SearchItem from './components/searchPage'
+import {CommonColumnImg} from './components/commonColumnImg.js'
 
 
 //创建导航路由

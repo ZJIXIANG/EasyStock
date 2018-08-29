@@ -3,15 +3,19 @@ import {View, Text, StyleSheet, Image} from 'react-native'
 import {toDeviceSize, width} from '../utils/sizeTransform'
 
 export default class CommonColumnImg extends Component{
+    constructor(props){
+        super(props)
+    }
     render(){
+        const {data} = this.props
         return(
             <View style={styles.container}>
                 <Image style={styles.leftPartForImg} source={require('../images/choicecoupon.png')}/>
                 <View style={styles.middlePart}>
-                    <Text style={styles.middlePartTop}>CM500-UD8702W Desktop PC</Text>
-                    <Text style={styles.middlePartBottom}>Computer Stuff/cables</Text>
+                    <Text style={styles.middlePartTop}>{data.title}</Text>
+                    <Text style={styles.middlePartBottom}>{data.info}</Text>
                 </View>
-                <Text style={styles.rightPartNum}>17</Text>
+                <Text style={styles.rightPartNum}>{data.count}</Text>
                 <Image style={styles.rightPartMore} source={require('../images/items_更多icon.png')}/>
             </View>
         )

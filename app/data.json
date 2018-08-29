@@ -21,5 +21,23 @@
             {"id":8, "title":"this is item8"}
          ]}
 
+    ],
+    "recordArray":[
+        "第1次搜索",
+        "asdsfsd",
+        "第3次搜索",
+        "第4次搜索",
+        "ewfewf333",
+        "efewfewf33",
+        "efewfefe3",
+        "efewfewf7",
+        "sdsdsds8",
+        "dsdsd88",
+        "sdsds"
+    ],
+    "searchResut":[
+        {"title":"this is item0","info":"Computer Stuff/PC","count":1},
+        {"title":"this is item1","info":"Computer Stuff/PC sdsd","count":2},
+        {"title":"this is item2","info":"Computer Stuff/PC sd","count":3}
     ]
 }

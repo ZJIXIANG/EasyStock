@@ -39,5 +39,57 @@
         {"title":"this is item0","info":"Computer Stuff/PC","count":1},
         {"title":"this is item1","info":"Computer Stuff/PC sdsd","count":2},
         {"title":"this is item2","info":"Computer Stuff/PC sd","count":3}
+    ],
+    "editLidt" : [
+        {"key" : "Name" , "data" : [{"title":"Name","value":"cable"}]},
+        {"key" : "Group" , "data" : [{"title":"Groups","value":"Goups"}]},
+        {"key" : "Information" , "data" : [
+                {"title":"Category","value":"compter cablles"},
+                {"title":"Description","value":"a-male to B-male，USB 2.0 certified..."},
+                {"title":"ID Tag","value":2324234324324},
+                {"title":"Prince","value":8.99},
+                {"title":"Photo","value":3},
+                {"title":"Supplier","value":"Dell computer"},
+                {"title":"Stock Shortage","value":10}
+            ]  
+        },
+        {"key" : "Group properties" , "data" : [
+                {"title":"Color","value":"white"},
+                {"title":"Specific attribute","value":"nothin"}
+            ]  
+        },
+        {"key" : "Quantity" , "data" : [
+                {"title":"Warehouse #1/shelf 1A","value":10},
+                {"title":"Warehouse #1/shelf 1B","value":7},
+                {"title":"History","value":"nothing"}
+            ]  
+        },
+        {"key" : "Weight,Dimensions" , "data" : [
+                {"title":"Weight","value":0.2},
+                {"title":"Total weight","value":3.14},
+                {"title":"Width","value":1},
+                {"title":"Length","value":8.99},
+                {"title":"Height","value":3},
+                {"title":"Volume","value":30.0002},
+                {"title":"Total volume","value":51.002}
+            ]  
+        },
+        {"key" : "Dates" , "data" : [
+                {"title":"Last inventory date","value":"January 30, 2019"},
+                {"title":"Expiry date","value":""},
+                {"title":"Purchase date","value":""}
+            ]  
+        },
+        {"key" : "Dates" , "data" : [
+                {"title":"Created on","value":"January 30, 2019"},
+                {"title":"last updates","value":""}
+            ]  
+        },
+            {"key" : "PDF" , "data" : [
+                {"title":"PDF Document","value":""},
+                {"title":"PDF Changelog","value":""},
+                {"title":"PDF Barcode","Value":""}
+            ]  
+        }
     ]
 }

@@ -7,23 +7,10 @@ import GroupModal from './components/groupModal.js'
 import {toDeviceSize} from '../../utils/sizeTransform'
 import SearchItem from './components/searchPage'
 import {CommonColumnImg} from './components/commonColumnImg.js'
+import AddItem from './components/addItemPage.js'
 
 
 //创建导航路由
-
-
-class AddItem extends Component{
-    static navigationOptions = {
-        title:'添加'
-    }
-    render(){
-        return(
-            <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-                <Text>添加items</Text>
-            </View>
-        )
-    }
-}
 
 class ScanCode extends Component{
     render(){
@@ -65,7 +52,7 @@ const ItemStack = createStackNavigator(
         AddItem,
     },
     {
-        initialRouteName:'ItemRoot'
+        initialRouteName:'AddItem'
     }
 )
 

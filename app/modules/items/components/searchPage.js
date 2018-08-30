@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Dimensions, 
 import {toDeviceSize, width, HEIGHT} from '../../../utils/sizeTransform'
 import needData from '../../../data.json'
 import HasImgColumnForItem from '../../../CommonComponents/hasImgColumnForItem'
+import NoResultsComponent from '../../../CommonComponents/noResult'
 
 const titleheight = toDeviceSize(128)
 const noSearchHeight = Dimensions.get("window").height - titleheight
@@ -14,7 +15,7 @@ class SearchResult extends Component{
                     data = {needData.searchResut}
                     renderItem = {(item => this._renderItem(item))}
                     // keyExtractor={index => index}
-                    ListEmptyComponent = {<NoSearchComponent/>}
+                    ListEmptyComponent = {<NoResultsComponent text='No search results found'/>}
                 >
                 </FlatList>
         )
@@ -25,16 +26,6 @@ class SearchResult extends Component{
     }
 }
 
-class NoResultComponent extends Component{
-    render(){
-        return(
-           <View style={styles.noResultContainer}>
-               <Image source={require('../../../images/search_无结果icon.png')} style={styles.noResultImg}/>
-               <Text style={styles.noSearchtInfo}>No search results found</Text>
-           </View> 
-        )
-    }
-}
 //搜索记录有关的组件
 class RecentSearch extends Component{
     render(){
@@ -118,8 +109,8 @@ class TitleBar extends Component{
     render(){
         const {goBack} = this.props.navigation
         const deleteSearch = this.state.searching ? (
-            <TouchableOpacity style={styles.delete} onPress={() => this.deleteSearch()}>
-                <Image source={require('../../../images/search_搜索框内删除icon.png')}/>
+            <TouchableOpacity onPress={() => this.deleteSearch()}>
+                <Image style={styles.delete} source={require('../../../images/search_搜索框内删除icon.png')}/>
             </TouchableOpacity> 
         ) : null;
         return(
@@ -298,16 +289,12 @@ const styles = StyleSheet.create({
         height:noSearchHeight,
         backgroundColor:'white',
     },
-    noResultContainer:{
-        width:toDeviceSize(750),
-        height:noSearchHeight,
-        backgroundColor:'#F5F7F7',
-        alignItems:'center',
-        paddingTop:toDeviceSize(346),
-    },
-    noResultImg:{
-        width:toDeviceSize(140),
-        height:toDeviceSize(120)
-    }
-
+    noSearchtInfo:{
+        // fontFamily: 'SFProText-Regular'
+        fontSize : toDeviceSize(32),
+        color : '#969CA1',
+        textAlign :'center',
+        lineHeight: toDeviceSize(32),
+        marginTop:toDeviceSize(30)
+   }
 })

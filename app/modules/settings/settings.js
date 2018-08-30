@@ -30,10 +30,4 @@ const SettingsStack = createStackNavigator(
     }
 ) 
 
-export default class Settings extends Component{
-    render(){
-        return(
-           <SettingsStack></SettingsStack>
-        )
-    }
-} 
+export default SettingsStack

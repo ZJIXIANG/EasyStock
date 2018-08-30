@@ -3,7 +3,6 @@ import {View, Text, Image, ScrollView, FlatList, Dimensions} from 'react-native'
 import {createStackNavigator, } from 'react-navigation';
 import {HeaderTopColumn, ItemCount, ItemInfo} from './components/headerColumn.js'
 import {ShowGroups} from './components/pageBody.js'
-import GroupModal from './components/groupModal.js'
 import {toDeviceSize} from '../../utils/sizeTransform'
 import SearchItem from './components/searchPage'
 import {CommonColumnImg} from './components/commonColumnImg.js'
@@ -29,7 +28,6 @@ class ItemRoot extends Component{
     render(){
         return (
             <View style={{flex:1}}>
-                <GroupModal></GroupModal>
                 <Image style={{width:toDeviceSize(750), height:toDeviceSize(278)}} source={require('../../images/items_bg.png')}/>
                 <HeaderTopColumn navigation={this.props.navigation}></HeaderTopColumn>
                 <ItemCount></ItemCount>
@@ -52,12 +50,11 @@ const ItemStack = createStackNavigator(
         AddItem,
     },
     {
-        initialRouteName:'AddItem'
+        initialRouteName:'AddItem',
+        navigationOptions:{
+            header:null
+        }
     }
 )
 
-export default class Items extends Component{
-    render(){
-        return <ItemStack/>
-    }
-}
+export default ItemStack

@@ -42,8 +42,4 @@ const GroupsStack = createStackNavigator(
     }
 )
 
-export default class Groups extends Component{
-    render(){
-        return <GroupsStack></GroupsStack>
-    }
-}
+export default GroupsStack

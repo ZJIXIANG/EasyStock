@@ -1,7 +1,11 @@
 import React,{Component} from 'react'
-import {View, Text, StyleSheet, SectionList, Image, Modal,} from 'react-native'
+import {View, Text, StyleSheet, SectionList, Image, Modal, TouchableOpacity} from 'react-native'
+import {createStackNavigator} from 'react-navigation'
 import {toDeviceSize} from '../../../utils/sizeTransform'
 import needData from '../../../data.json'
+import TextEditing from '../../../CommonComponents/textEditing'
+import ListEditing from '../../../CommonComponents/listEditing'
+
 
 class DeleteModal extends Component{
     _onRequestClose(){
@@ -31,21 +35,39 @@ class DeleteModal extends Component{
 }
 
 class EditList extends Component{
+    constructor(props){
+        super(props)
+        const {navigate} = this.props
+        this.state={
+            navigate,
+        }
+    }
     _renderSection(info){
-        console.log(info)
         return(
             <View style={styles.sectionContainer}>
                 <Text style={styles.sectionText}>{info.section.key}</Text>
             </View>
         )
     }
+    _choicePageType(title){
+        const a = ['Name','Group'];
+        for(let i=0; i<2 ; i++){
+            if (a[i] == title) {
+            }
+        }
+        
+      
+    }
     _renderItem(info){
-        // console.log(info.item.id)
+        const title = info.item.title
+        const value = info.item.value
         return(
-            <View style={styles.itemContainer} key={info.item.id}>
-                <Text style={styles.itemLeftText}>{ info.item.title}</Text>
-                <Text style={styles.itemRightText}>{ info.item.value}</Text>
-                <Image source={require('../../../images/items_更多icon.png')} style={styles.itemImg}/>
+            <View style={styles.itemContainer}>
+                <Text style={styles.itemLeftText}>{ title}</Text>
+                <Text style={styles.itemRightText}>{ value}</Text>
+                <TouchableOpacity onPress={() => this._choicePageType(title)}>
+                    <Image source={require('../../../images/items_更多icon.png')} style={styles.itemImg}/>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -59,11 +81,9 @@ class EditList extends Component{
         )
     }
 
-    keytt(index){
-        return index.id
-    }
 
     render(){
+        console.log(this.state.navigate)
         return(
             <SectionList 
                 sections = {needData.editLidt}
@@ -71,7 +91,7 @@ class EditList extends Component{
                 renderSectionHeader = {(info) => this._renderSection(info)}
                 ListFooterComponent = {() => this._footComponent()}
                 ItemSeparatorComponent = {() => <View><Text style={styles.itemSepara}></Text></View>}
-                keyExtractor={(index)=> this.keytt(index)}
+                keyExtractor = {(item,index) => item.title}
             >
 
             </SectionList>
@@ -91,20 +111,35 @@ class HeaderColumn extends Component{
     }
 }
 
-export default class AddItem extends Component{
+class AddItemRoot extends Component{
     static navigationOptions = {
         header:null
     }
     render(){
+        const {navigate} = this.props.navigation
         return(
             <View>
-                <DeleteModal></DeleteModal>
+                {/* <DeleteModal></DeleteModal> */}
                 <HeaderColumn></HeaderColumn>
-                <EditList></EditList>
+                <EditList navigate={navigate}></EditList>
             </View>
         )
     }
 }
+
+const AddItemStack = createStackNavigator(
+    {
+        AddItemRoot,
+        TextEditing,
+        ListEditing,
+    },
+    {
+        initialRouteName:'AddItemRoot',
+    }
+) 
+
+export default AddItemStack
+
 
 const styles = StyleSheet.create({
     HeaderColumnContainer:{
@@ -116,7 +151,8 @@ const styles = StyleSheet.create({
         paddingBottom : toDeviceSize(22),
         flexDirection : 'row',
         justifyContent : 'space-between' ,
-        backgroundColor : '#00ADED'
+        backgroundColor : '#00ADED',
+        alignItems:'center',
     },
     HeaderTextLeft:{
         // fontFamily: 'SFProText-Regular'

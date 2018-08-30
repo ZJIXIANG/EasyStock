@@ -27,11 +27,5 @@ const OverviewStack = createStackNavigator(
     }
 )
 
-export default class Overview extends Component{
-    render(){
-        return(
-            <OverviewStack></OverviewStack>
-        )
-    }
-} 
+export default OverviewStack
 

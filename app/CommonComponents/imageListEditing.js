@@ -1,30 +1,64 @@
 import React,{Component} from 'react'
-import {View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions} from 'react-native'
+import {View, Text, StyleSheet, Image, TouchableOpacity, SectionList, Dimensions, FlatList} from 'react-native'
 import {toDeviceSize} from '../utils/sizeTransform'
-import {ForExample} from '../data.json'
+import {imageList} from '../data.json'
 import NoImgColumnForItm from './noImgColumnForItm'
 import NoResultComponent from './noResult'
 
-
-const titleheight = toDeviceSize(128)
-const noSearchHeight = Dimensions.get("window").height - titleheight
-
-class ChoiceList extends Component{
-    _renderItem(item){
-        return <NoImgColumnForItm data={item}></NoImgColumnForItm>
+class ImgList extends Component{
+    constructor(props){
+        super(props)
     }
-    render(){
+
+    flatRender(item){
+        // console.log(item)
         return(
-            <View style={styles.listBg}>
-                <FlatList
-                    data = {ForExample}
-                    renderItem = {(item => this._renderItem(item))}
-                    keyExtractor = {(item,index) => item.title}
-                >
-                </FlatList>
+            <View style={{flexDirection:'row',flexWrap:'wrap'}}>
+                <Image source={require('../images/photo/c.jpg')} style={{width:100,height:100}}></Image>
             </View>
         )
     }
+
+    _renderItem(info){
+        const data = info.item
+        console.log(data)
+        return(
+            <View style={{flexDirection:'row',flexWrap:'wrap',width:375,height:700}}>
+
+                <FlatList
+                        horizontal={true}
+                        data={data}
+                        renderItem={(item) => this.flatRender(item)}
+                >
+
+                </FlatList>
+           </View>
+        )
+    }
+
+    _renderSection(info){
+        return(
+            <Text>12334</Text>
+        )
+    }
+
+    render(){
+        return(
+            <SectionList
+                sections={imageList}
+                renderItem = {(info) => this._renderItem(info)}
+                // renderSectionHeader = {(info) => this._renderSection(info)}
+                // ListFooterComponent = {() => this._footComponent()}
+                // ItemSeparatorComponent = {() => <View style={{backgroundColor:'black',width:375,height:1}}></View>}
+                keyExtractor = {(item,index) => index}
+                showsHorizontalScrollIndicator ={false}
+            >
+
+            </SectionList>
+        )
+    }
+    
+
 }
 
 
@@ -41,24 +75,23 @@ export class HeaderColumn extends Component{
                 </TouchableOpacity>
                 <Text style={styles.HeaderTextMidd}>{navigation.getParam('title')}</Text>
                 <TouchableOpacity>
-                    <Image source={require('../images/nav_添加icon.png')} style={styles.rightImg}></Image>
+                    <Image source={require('../images/nav_拍摄icon.png')} style={styles.rightImg}></Image>
                 </TouchableOpacity>
             </View>
         )
     }
 }
 
-export default class ListEdite extends Component{
+export default class ImageListEditing extends Component{
     static navigationOptions = {
         header:null
     }
     render(){
         const {navigation} =this.props
-        const ShowChoiceList = ForExample.length == 4 ? <ChoiceList/> : <NoResultComponent text={navigation.getParam('title')}/> ;
         return(
             <View>
                 <HeaderColumn navigation={navigation}></HeaderColumn>
-                {ShowChoiceList}
+                <ImgList></ImgList>
             </View>
         )
     }
@@ -84,10 +117,10 @@ const styles = StyleSheet.create({
         textAlign :'center',
         lineHeight: toDeviceSize(36),
     },
-    listBg:{
-        width:toDeviceSize(750),
-        height:noSearchHeight,
-        backgroundColor:'#FFFFFF',
-    },
+    itemSepara:{
+        backgroundColor:"#E6E6E6",
+        flex:1,
+        height:toDeviceSize(1)
+    }
     
 })

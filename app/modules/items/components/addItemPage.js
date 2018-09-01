@@ -5,6 +5,8 @@ import {toDeviceSize} from '../../../utils/sizeTransform'
 import needData from '../../../data.json'
 import TextEditing from '../../../CommonComponents/textEditing'
 import ListEditing from '../../../CommonComponents/listEditing'
+import SortEditing from '../../../CommonComponents/sortEditing'
+import ImgEditing from '../../../CommonComponents/imageListEditing'
 
 
 class DeleteModal extends Component{
@@ -35,13 +37,11 @@ class DeleteModal extends Component{
 }
 
 class EditList extends Component{
+
     constructor(props){
         super(props)
-        const {navigate} = this.props
-        this.state={
-            navigate,
-        }
     }
+
     _renderSection(info){
         return(
             <View style={styles.sectionContainer}>
@@ -50,9 +50,19 @@ class EditList extends Component{
         )
     }
     _choicePageType(title){
-        const a = ['Name','Group'];
-        for(let i=0; i<2 ; i++){
-            if (a[i] == title) {
+        const a = ['Name','Description','ID Tag','Prince'];
+        const b = ['Groups'];
+        const c = ['Category'];
+        const d = ['Photo']
+        for(let i=0; i<a.length ; i++){
+            if (a[i] === title) {
+                this.props.navigate('TextEditing',{title,})
+            } else if(b[i] === title){
+                this.props.navigate('ListEditing',{title,})
+            } else if(c[i] === title){
+                this.props.navigate('SortEditing',{title,})
+            } else if(d[i] === title){
+                this.props.navigate('ImgEditing',{title,})
             }
         }
         
@@ -81,9 +91,11 @@ class EditList extends Component{
         )
     }
 
+    _extraUniqueKey(item, index){
+       console.log(tem.key)
+    }
 
     render(){
-        console.log(this.state.navigate)
         return(
             <SectionList 
                 sections = {needData.editLidt}
@@ -91,7 +103,7 @@ class EditList extends Component{
                 renderSectionHeader = {(info) => this._renderSection(info)}
                 ListFooterComponent = {() => this._footComponent()}
                 ItemSeparatorComponent = {() => <View><Text style={styles.itemSepara}></Text></View>}
-                keyExtractor = {(item,index) => item.title}
+                keyExtractor = {(item, index) => index}
             >
 
             </SectionList>
@@ -132,6 +144,8 @@ const AddItemStack = createStackNavigator(
         AddItemRoot,
         TextEditing,
         ListEditing,
+        SortEditing,
+        ImgEditing,
     },
     {
         initialRouteName:'AddItemRoot',

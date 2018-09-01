@@ -5,11 +5,15 @@ import {toDeviceSize} from '../utils/sizeTransform'
 
 
 class HeaderColumn extends Component{
+    constructor(props){
+        super(props)
+    }
     render(){
+        const {navigation} = this.props
         return(
             <View style={styles.HeaderColumnContainer}>
-                <Text style={styles.HeaderTextLeft}>Cancel</Text>
-                <Text style={styles.HeaderTextMidd}>New Item</Text>
+                <Text style={styles.HeaderTextLeft} onPress={() => navigation.goBack()}>Cancel</Text>
+                <Text style={styles.HeaderTextMidd}>{navigation.getParam('title')}</Text>
                 <Text style={styles.HeaderTextRight}>Done</Text>
             </View>
         )
@@ -43,28 +47,104 @@ export default class TextEditing extends Component{
         })
     }
     render(){
+
+        const {navigation} =this.props
+        const title = navigation.getParam('title')
+        if (title ==='Prince' ){
+            return(
+                <View>
+                    <HeaderColumn navigation={navigation}></HeaderColumn>
+                    {/* 小型文本框 */}
+                    <View style={styles.inputContainer}>
+                        <TextInput 
+                            ref = 'editInput'
+                            style={styles.textInput} 
+                            underlineColorAndroid="transparent"
+                            onFocus={() => this.isEditing()}
+                            onChangeText={(text) => this.changeText(text)}
+                            value = {this.state.editText}
+                        >
+                        </TextInput>
+                        <Text style={styles.doller}>$</Text>
+                    </View>
+                </View>
+            )
+        }
+        const scanCode = this.state.editing  ? null :  (
+            <TouchableOpacity onPress={() => this.deleteEdite()}>  
+                    <Image style={styles.inputImg} source={require('../images/Tag_scanCode_icon.png')}></Image>
+                </TouchableOpacity>
+        ) ;
+
         const deleteImg = this.state.editing ? (
                 <TouchableOpacity onPress={() => this.deleteEdite()}>  
                     <Image style={styles.inputImg} source={require('../images/search_搜索框内删除icon.png')}></Image>
                 </TouchableOpacity>
             ) : null ;
-        return(
-            <View>
-                <HeaderColumn></HeaderColumn>
-                <View style={styles.inputContainer}>
-                    <TextInput 
-                        ref = 'editInput'
-                        style={styles.textInput} 
-                        underlineColorAndroid="transparent"
-                        onFocus={() => this.isEditing()}
-                        onChangeText={(text) => this.changeText(text)}
-                        value = {this.state.editText}
-                    >
-                    </TextInput>
-                    {deleteImg}
+
+        if(title === 'Prince'){
+
+            return(
+                <View>
+                    <HeaderColumn navigation={navigation}></HeaderColumn>
+                    {/* 小型文本框 */}
+                    <View style={styles.inputContainer}>
+                        <TextInput 
+                            ref = 'editInput'
+                            style={styles.textInput} 
+                            underlineColorAndroid="transparent"
+                            onFocus={() => this.isEditing()}
+                            onChangeText={(text) => this.changeText(text)}
+                            value = {this.state.editText}
+                        >
+                        </TextInput>
+                        <Text style={styles.doller}>$</Text>
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        }
+
+        if(title !== 'Description'){
+            return(
+                <View>
+                    <HeaderColumn navigation={navigation}></HeaderColumn>
+                    {/* 小型文本框 */}
+                    <View style={styles.inputContainer}>
+                        <TextInput 
+                            ref = 'editInput'
+                            style={styles.textInput} 
+                            underlineColorAndroid="transparent"
+                            onFocus={() => this.isEditing()}
+                            onChangeText={(text) => this.changeText(text)}
+                            value = {this.state.editText}
+                        >
+                        </TextInput>
+                        {deleteImg}
+                        {scanCode}
+                    </View>
+                </View>
+            )
+        } else{
+            return(
+                <View>
+                    <HeaderColumn navigation={navigation}></HeaderColumn>
+                    {/* 大型文本框 */}
+                    <View style={styles.bigInputContainer}>
+                        <TextInput 
+                            ref = 'editInput'
+                            style={styles.bigTextInput} 
+                            underlineColorAndroid="transparent"
+                            onFocus={() => this.isEditing()}
+                            onChangeText={(text) => this.changeText(text)}
+                            value = {this.state.editText}
+                            multiline ={true}
+                        >
+                        </TextInput>
+                    </View>
+                </View>
+            )
+        }
+        
     }
 }
 
@@ -88,12 +168,14 @@ const styles = StyleSheet.create({
         color : '#FFFFFF',
         letterSpacing : 0,
         textAlign :'left',
+        lineHeight : toDeviceSize(40)
     },
     HeaderTextMidd:{
         // fontFamily: 'SFProText-Semibold'
         fontSize : toDeviceSize(36),
         color : '#FFFFFF',
         textAlign :'center',
+        lineHeight : toDeviceSize(43)
     },
     HeaderTextRight:{
         // fontFamily: 'SFProText-Semibold'
@@ -101,7 +183,8 @@ const styles = StyleSheet.create({
         color : '#FFFFFF',
         letterSpacing : 0,
         textAlign :'right',
-        opacity : 0.6,
+        // opacity : 0.6,
+        lineHeight : toDeviceSize(40)
     },
     inputContainer:{
         width:toDeviceSize(750),
@@ -116,10 +199,31 @@ const styles = StyleSheet.create({
         alignItems:'center',
         
     },
+    bigInputContainer:{
+        width:toDeviceSize(750),
+        height:toDeviceSize(452),
+        backgroundColor:'#FFFFFF',
+        borderBottomColor:'#E6E6E6',
+        borderBottomWidth:toDeviceSize(1),
+        paddingHorizontal:toDeviceSize(30),
+        paddingVertical:toDeviceSize(30),
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+    },
     textInput:{
         padding:0,
         width:toDeviceSize(650),
         height:toDeviceSize(34),
+        // fontFamily: 'SFProDisplay-Regular',
+        fontSize: toDeviceSize(28),
+        color: '#464646',
+        letterSpacing: 0,
+    },
+    bigTextInput:{
+        padding:0,
+        width:toDeviceSize(690),
+        height:toDeviceSize(390),
         // fontFamily: 'SFProDisplay-Regular',
         fontSize: toDeviceSize(28),
         color: '#464646',
@@ -130,6 +234,14 @@ const styles = StyleSheet.create({
         // height:toDeviceSize(32),
         // backgroundColor: '#D7DADB',
         borderRadius: toDeviceSize(2),
+    },
+    doller:{
+        // fontFamily: 'SFProDisplay-Regular',
+        fontSize: toDeviceSize(32),
+        color: '#969CA1',
+        letterSpacing: 0,
+        textAlign:'right',
+        lineHeight:toDeviceSize(38)
     }
     
 })

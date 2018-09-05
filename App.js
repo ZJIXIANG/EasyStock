@@ -17,6 +17,6 @@ export default createBottomTabNavigator(
 		Settings,
 		},
 		{
-			initialRouteName:'Items'
+			initialRouteName:'Groups'
 		}
 )

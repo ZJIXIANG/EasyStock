@@ -4,22 +4,28 @@ import {toDeviceSize} from '../utils/sizeTransform'
 import {ForExample} from '../data.json'
 import NoImgColumnForItm from './noImgColumnForItm'
 import NoResultComponent from './noResult'
+import AddCategory from '../modules/groups/components/addCategory'
 
 
 const titleheight = toDeviceSize(128)
 const noSearchHeight = Dimensions.get("window").height - titleheight
 
-class ChoiceList extends Component{
+export class ChoiceList extends Component{
+    constructor(props){
+        super(props)
+    }
     _renderItem(item){
+        console.log(item)
         return <NoImgColumnForItm data={item}></NoImgColumnForItm>
     }
     render(){
+        const {data} = this.props
         return(
             <View style={styles.listBg}>
                 <FlatList
-                    data = {ForExample}
+                    data = {data}
                     renderItem = {(item => this._renderItem(item))}
-                    keyExtractor = {(item,index) => item.title}
+                    keyExtractor = {(item,index) => index}
                 >
                 </FlatList>
             </View>
@@ -34,13 +40,15 @@ export class HeaderColumn extends Component{
     }
     render(){
         const {navigation} = this.props
+        const title = navigation.getParam('title')
+        const {direction} = this.props
         return(
             <View style={styles.HeaderColumnContainer}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Image source={require('../images/nav_返回icon.png')} style={styles.leftImg}></Image>
                 </TouchableOpacity>
-                <Text style={styles.HeaderTextMidd}>{navigation.getParam('title')}</Text>
-                <TouchableOpacity>
+                <Text style={styles.HeaderTextMidd}>{title}</Text>
+                <TouchableOpacity style={styles.rightImg} onPress={() => navigation.navigate(direction)}>
                     <Image source={require('../images/nav_添加icon.png')} style={styles.rightImg}></Image>
                 </TouchableOpacity>
             </View>
@@ -54,7 +62,7 @@ export default class ListEdite extends Component{
     }
     render(){
         const {navigation} =this.props
-        const ShowChoiceList = ForExample.length == 4 ? <ChoiceList/> : <NoResultComponent text={navigation.getParam('title')}/> ;
+        const ShowChoiceList = ForExample.length == 4 ? <ChoiceList data={ForExample}/> : <NoResultComponent text={navigation.getParam('title')}/> ;
         return(
             <View>
                 <HeaderColumn navigation={navigation}></HeaderColumn>

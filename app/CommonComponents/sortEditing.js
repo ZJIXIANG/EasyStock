@@ -9,16 +9,22 @@ import NoResultComponent from './noResult'
 
 
 
-class SortList extends Component{
+export class SortList extends Component{
+
+    constructor(props){
+        super(props)
+        
+    }
 
     _renderItem(item){
         return <SortColumnForItem data={item.item}></SortColumnForItem>
     }
 
     render(){
+        const needData = this.props.data 
         return(
             <FlatList
-                data = {sortList}
+                data = {needData}
                 renderItem = {(item => this._renderItem(item))}
                 keyExtractor = {(item,index) => item.title}
             >
@@ -34,7 +40,7 @@ export default class SortEditing extends Component{
     render(){
         const {navigation} =this.props
         const title = navigation.getParam('title')
-        const showList = sortList.length === 0 ? <NoResultComponent text={title}/> : <SortList></SortList>
+        const showList = sortList.length === 0 ? <NoResultComponent text={title}/> : <SortList data={sortList}></SortList>
         return(
             <View>
                 <HeaderColumn navigation={navigation}></HeaderColumn>

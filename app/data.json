@@ -1,25 +1,36 @@
 {
     "groups":[
-        {"group1":[
-            {"id":0, "title":"this is item0"},
-            {"id":1, "title":"this is item1"},
-            {"id":2, "title":"this is item2"}
-         ]},
-         {"group2":[
-            {"id":3, "title":"this is item3"},
-            {"id":4, "title":"this is item4"},
-            {"id":5, "title":"this is item5"}
-         ]},
-         {"group3":[
-            {"id":6, "title":"this is item6"},
-            {"id":7, "title":"this is item7"},
-            {"id":8, "title":"this is item8"}
-         ]},
-         {"group4":[
-            {"id":9, "title":"this is item6"},
-            {"id":10, "title":"this is item7"},
-            {"id":11, "title":"this is item8"}
-         ]}
+        {
+            "group1":[
+                {"id":0, "title":"this is item0"},
+                {"id":1, "title":"this is item1"},
+                {"id":2, "title":"this is item2"}
+            ],
+            "id":0
+        },
+        {
+            "group2":[
+                {"id":3, "title":"this is item3"},
+                {"id":4, "title":"this is item4"},
+                {"id":5, "title":"this is item5"}
+            ],
+            "id":1
+        },
+         {
+            "group3":[
+                {"id":6, "title":"this is item6"},
+                {"id":7, "title":"this is item7"},
+                {"id":8, "title":"this is item8"}
+            ],"id":2
+        },
+         {
+            "group4":[
+                {"id":9, "title":"this is item6"},
+                {"id":10, "title":"this is item7"},
+                {"id":11, "title":"this is item8"}
+            ],
+            "id":3
+        }
 
     ],
     "recordArray":[
@@ -40,23 +51,23 @@
         {"title":"this is item1","info":"Computer Stuff/PC sdsd","count":2},
         {"title":"this is item2","info":"Computer Stuff/PC sd","count":3}
     ],
-    "editLidt" : [
+    "editList" : [
         {"key" : "Name" , "data" : [{"title":"Name","value":"cable"}]},
         {"key" : "Group" , "data" : [{"title":"Groups","value":"Goups"}]},
         {"key" : "Information" , "data" : [
-            {"title":"Category","value":"compter cablles"},
-            {"title":"Description","value":"a-male to B-male，USB 2.0 certified..."},
-            {"title":"ID Tag","value":2324234324324},
-            {"title":"Prince","value":8.99},
-            {"title":"Photo","value":3},
-            {"title":"Supplier","value":"Dell computer"},
-            {"title":"Stock Shortage","value":10}
+                {"title":"Category","value":"compter cablles"},
+                {"title":"Description","value":"a-male to B-male，USB 2.0 certified..."},
+                {"title":"ID Tag","value":2324234324324},
+                {"title":"Prince","value":8.99},
+                {"title":"Photo","value":3},
+                {"title":"Supplier","value":"Dell computer"},
+                {"title":"Stock Shortage","value":10}
             ]
         },
         {"key" : "Group properties" , "data" : [
-            {"title":"Color","value":"white"},
-            {"title":"Specific attribute","value":"nothin"}
-        ]
+                {"title":"Color","value":"white"},
+                {"title":"Specific attibute","value":"nothin"}
+            ]
         },
         {"key" : "Quantity" , "data" : [
                 {"title":"Warehouse #1/shelf 1A","value":10},
@@ -109,19 +120,86 @@
     ],
     "imageList":[
         {"key":"June 28,2018","data":[[
-                {"fileName":"../images/photo/a.jpg"},
-                {"fileName":"../images/photo/b.jpg"},
-                {"fileName":"../images/photo/c.jpg"},
-                {"fileName":"../images/photo/d.jpg"},
-                {"fileName":"../images/photo/f.jpg"}
+                {"id":0,"fileName":"../images/photo/a.jpg"},
+                {"id":1,"fileName":"../images/photo/b.jpg"},
+                {"id":2,"fileName":"../images/photo/c.jpg"},
+                {"id":3,"fileName":"../images/photo/d.jpg"},
+                {"id":4,"fileName":"../images/photo/f.jpg"}
             ]]
         },
         {"key":"May 2,2018","data":[[
-            {"fileName":"../images/photo/g.jpg"},
-            {"fileName":"../images/photo/h.jpg"},
-            {"fileName":"../images/photo/i.jpg"}            
+            {"id":5,"fileName":"../images/photo/g.jpg"},
+            {"id":6,"fileName":"../images/photo/h.jpg"},
+            {"id":7,"fileName":"../images/photo/i.jpg"}            
         ]]
         
+        }
+    ],
+    "supplierData":[
+        {"id":0,"group":"Groups 1", "prince":16.21},
+        {"id":1,"group":"Groups 2", "prince":12.09}
+    ],
+    "storageList":[
+        {"title":"Storage 1","nums":13},
+        {"title":"Storage 2","nums":20}
+    ],
+    "editGroupList":[
+        {"key" : "Name" , "data" : [{"title":"Name","value":"cable"}]},
+        {"key" : "Currency,Units" , "data" : [
+                {"title":"Currency","value":"compter cablles"},
+                {"title":"Weight unit","value":"a-male"},
+                {"title":"Size unit","value":2324234324324}
+            ]
+        },
+        {"key" : "Items" , "data" : [
+                {"title":"Next inventory data","value":"white"},
+                {"title":"Last inventory data","value":"nothin"},
+                {"title":"Item specific sttributes","value":"nothin"}
+            ]
+        }
+    ],
+    "currencyList":[
+        {"id":0,"currencyCountry":"Canada,Dollars","currencyName":"CAD/$"},
+        {"id":1,"currencyCountry":"Cayman lslands,Dollars","currencyName":"KYD/$"},
+        {"id":2,"currencyCountry":"Chile,Pesos","currencyName":"CLP/$"},
+        {"id":3,"currencyCountry":"China,Yuan Renminbi","currencyName":"CNY/元"},
+        {"id":4,"currencyCountry":"Costa Rica","currencyName":"CRC/₡"},
+        {"id":5,"currencyCountry":"Colombia,Pesos","currencyName":"COP/$"}
+
+    ],
+    "weightUnitData":[
+        {"id":0,"title":"Kilgram"},
+        {"id":1,"title":"Gram"},
+        {"id":2,"title":"Pound","show":true}
+    ],
+    "sizeUnitData":[
+        {"id":0,"title":"Metre"},
+        {"id":1,"title":"Centimetre"},
+        {"id":2,"title":"Millimetre"},
+        {"id":3,"title":"Foot"},
+        {"id":4,"title":"Inch","show":true}        
+    ],
+    "sortListForGroup":[
+        {"sort":1,"title":"Computer Staff","nums":2},
+        {"sort":2,"title":"Cables","nums":13},
+        {"sort":3,"title":"USB Cables","nums":4},
+        {"sort":3,"title":"HDMI Cables","nums":5},
+        {"sort":2,"title":"PC","nums":1},
+        {"sort":1,"title":"Tools","nums":2}
+    ],
+    "storagesList":[
+        {"key" : "Name" , "data" : [{"title":"Name","value":"cable"}]},
+        {"key" : "Information" , "data" : [
+                {"title":"Parent storage","value":"Warehose"},
+                {"title":"Hierachy","value":"a-male"},
+                {"title":"Description","value":2324234324324},
+                {"title":"ID Tag","value":2324234324324}
+            ]
+        },
+        {"key" : "Items" , "data" : [
+                {"title":"Add new item","value":"white"},
+                {"title":"Add existing item","value":"nothin"}
+            ]
         }
     ]
 

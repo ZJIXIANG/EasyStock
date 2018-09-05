@@ -8,7 +8,7 @@ export default class NoImgColumn extends Component{
     }
     render(){
         const {data} = this.props
-        const showImg = data.item.show?  <Image style={styles.img} source={require('../images/Category_选择icon.png')}></Image> : null;
+        const showImg = data.item.show ? <Image style={styles.img} source={require('../images/Category_选择icon.png')}></Image> : null;
         return(
             <TouchableOpacity>
                 <View style={styles.container}>

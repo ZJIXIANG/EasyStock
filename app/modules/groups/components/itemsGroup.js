@@ -1,39 +1,25 @@
+//对应2.1.3
+
 import React,{Component} from 'react'
-import {View, Text, StyleSheet, SectionList, Image, Modal, TouchableOpacity} from 'react-native'
+import {View, Text, StyleSheet, Image, SectionList, TouchableOpacity} from 'react-native'
+import {toDeviceSize} from '../../../utils/sizeTransform'
+import {editGroupList} from '../../../data.json'
 import {createStackNavigator} from 'react-navigation'
-import {toDeviceSize} from '../../../utils/sizeTransform.js'
-import {editList} from '../../../data.json'
 import TextEditing from '../../../CommonComponents/textEditing'
-import ListEditing from '../../../CommonComponents/listEditing'
-import SortEditing from '../../../CommonComponents/sortEditing'
-import ImgEditing from '../../../CommonComponents/imageListEditing'
-import Supplier,{SupplierInfo} from './supplier'
-import Storage from '../components/storagePage'
+import Currency from './currency'
+import WeightUnit from './weightUnit'
 import BigText from '../../../CommonComponents/bigtextEditing'
 
-class DeleteModal extends Component{
-    _onRequestClose(){
-        console.log('关闭')
-    }
+
+
+class HeaderColumn extends Component{
     render(){
         return(
-            <Modal 
-                visible = {true}
-                animationType = {'slide'}
-                transparent = {false}
-                onRequestClose = { () => {this._onRequestClose()}}
-            >
-                <View style={styles.modalContainer}>
-                    <View style={styles.topModal}>
-                        <Text style={styles.topModalTopText}>Delete this item?</Text>
-                        <View style={styles.topModalView}></View>
-                        <Text style={styles.topModalBottomText}>OK</Text>
-                    </View>   
-                    <View style={styles.bottomModal}>
-                        <Text style={styles.bottomModalText}>Cancel</Text>
-                    </View>
-                </View>
-            </Modal>
+            <View style={styles.HeaderColumnContainer}>
+                <Text style={styles.HeaderTextLeft}>Cancel</Text>
+                <Text style={styles.HeaderTextMidd}>Items group</Text>
+                <Text style={styles.HeaderTextRight}>Done</Text>
+            </View>
         )
     }
 }
@@ -52,22 +38,20 @@ export class EditList extends Component{
         )
     }
     _choicePageType(title){
-        const a = ['Name','ID Tag','Prince','Color','Stock Shortage','Color','Specific attibute'];
-        const b = ['Groups','Storage'];
-        const c = ['Category'];
-        const d = ['Photo']
-        const e = ['Description']
+        const a = ['Name',];
+        const b = ['Currency','Storage'];
+        const c = ['Weight unit','Size unit'];
+        const d = ['Photo'];
+        const e = ['Group propertites']
         for(let i=0; i<a.length ; i++){
             if (a[i] === title) {
                 this.props.navigate('TextEditing',{title,})
             } else if(b[i] === title){
-                this.props.navigate('ListEditing',{title,})
+                this.props.navigate('Currency',{title,})
             } else if(c[i] === title){
-                this.props.navigate('SortEditing',{title,})
+                this.props.navigate('WeightUnit',{title,})
             } else if(d[i] === title){
                 this.props.navigate('ImgEditing',{title,})
-            } else if(e[i] === title){
-                this.props.navigate('BigText',{title,})
             } 
             else{
                 this.props.navigate(title,{title,})
@@ -120,53 +104,44 @@ export class EditList extends Component{
     }
 }
 
-class HeaderColumn extends Component{
-    render(){
-        return(
-            <View style={styles.HeaderColumnContainer}>
-                <Text style={styles.HeaderTextLeft}>Cancel</Text>
-                <Text style={styles.HeaderTextMidd}>New Item</Text>
-                <Text style={styles.HeaderTextRight}>Done</Text>
-            </View>
-        )
-    }
-}
 
-class AddItemRoot extends Component{
+class ItemsGroup extends Component{
     static navigationOptions = {
         header:null
     }
+
+    constructor(props){
+        super(props)
+    }
     render(){
+        const {navigation} =this.props
         const {navigate} = this.props.navigation
         return(
             <View>
-                {/* <DeleteModal></DeleteModal> */}
-                <HeaderColumn></HeaderColumn>
-                <EditList navigate={navigate} editList={editList}></EditList>
+                <HeaderColumn navigation={navigation}/>
+                <EditList editList={editGroupList} navigate={navigate}/>
             </View>
         )
     }
 }
 
-const AddItemStack = createStackNavigator(
+const ItemsGroupStack = createStackNavigator(
     {
-        AddItemRoot,
+        ItemsGroup,
         TextEditing,
-        ListEditing,
-        SortEditing,
-        ImgEditing,
-        Supplier,
-        SupplierInfo,
-        Storage,
+        Currency,
+        WeightUnit,
         BigText
     },
     {
-        initialRouteName:'AddItemRoot',
+        // initialRouteName:'TextEditing',
+        navigationOptions:{
+            header:null
+        }
     }
-) 
+)
 
-export default AddItemStack
-
+export default ItemsGroupStack
 
 const styles = StyleSheet.create({
     HeaderColumnContainer:{
@@ -277,63 +252,4 @@ const styles = StyleSheet.create({
         textAlign :'center',
         letterSpacing : 0,
     },
-    modalContainer:{
-        flex:1,
-        backgroundColor:'rgba(0,0,0,0.4)',
-        alignItems:'center',
-    },
-    bottomModal:{
-        width:toDeviceSize(710),
-        height:toDeviceSize(114),
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#FFFFFF',
-        borderRadius:toDeviceSize(10),
-        position:'absolute',
-        bottom:toDeviceSize(20),
-        opacity:1,
-    },
-    bottomModalText:{
-        // fontFamily: '.SFNSDisplay'
-        fontSize : toDeviceSize(40),
-        color : '#007AFF',
-        textAlign :'center',
-        letterSpacing : toDeviceSize(0.76),
-        lineHeight:toDeviceSize(47)
-    },
-    topModal:{
-        width:toDeviceSize(710),
-        height:toDeviceSize(203),
-        paddingTop:toDeviceSize(26),
-        paddingBottom:toDeviceSize(33),
-        alignItems:'center',
-        backgroundColor:'#fff',
-        opacity:1,
-        justifyContent:'space-between',
-        position:'absolute',
-        bottom:toDeviceSize(150),
-        borderRadius:toDeviceSize(10),
-    },
-    topModalTopText:{
-        // fontFamily: 'SFProDisplay-Regular'
-        fontSize : toDeviceSize(26),
-        color : '#969CA1',
-        textAlign :'center',
-        letterSpacing : 0,
-        lineHeight:toDeviceSize(36)
-    },
-    topModalView:{
-        width:toDeviceSize(710),
-        height:toDeviceSize(1),
-        backgroundColor:'#969CA1',
-        position:'absolute',
-        bottom:toDeviceSize(114)
-    },
-    topModalBottomText:{
-        // fontFamily: 'SFProDisplay-Regular'
-        fontSize : toDeviceSize(40),
-        color : '#007AFF',
-        textAlign :'center',
-        letterSpacing : toDeviceSize(1),
-    }
 })

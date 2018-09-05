@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {View, Text, StyleSheet, Image, TouchableOpacity, SectionList, Dimensions, FlatList} from 'react-native'
 import {toDeviceSize} from '../utils/sizeTransform'
 import {imageList} from '../data.json'
+import NoResult from '../CommonComponents/noResult'
 import NoImgColumnForItm from './noImgColumnForItm'
 import NoResultComponent from './noResult'
 
@@ -11,24 +12,24 @@ class ImgList extends Component{
     }
 
     flatRender(item){
-        // console.log(item)
         return(
-            <View style={{flexDirection:'row',flexWrap:'wrap'}}>
-                <Image source={require('../images/photo/c.jpg')} style={{width:100,height:100}}></Image>
+            <View style={styles.flatImg}>
+                <Image source={require('../images/photo/c.jpg')} style={{width:toDeviceSize(226),height:toDeviceSize(226)}}></Image>
             </View>
         )
     }
 
     _renderItem(info){
         const data = info.item
-        console.log(data)
         return(
-            <View style={{flexDirection:'row',flexWrap:'wrap',width:375,height:700}}>
+            <View style={{flexDirection:'row',flexWrap:'wrap',width:toDeviceSize(750)}}>
 
                 <FlatList
-                        horizontal={true}
+                        horizontal={false}
                         data={data}
                         renderItem={(item) => this.flatRender(item)}
+                        keyExtractor = {(item, index) => item.id}
+                        numColumns ={3}
                 >
 
                 </FlatList>
@@ -38,7 +39,9 @@ class ImgList extends Component{
 
     _renderSection(info){
         return(
-            <Text>12334</Text>
+            <View style={styles.section}>
+                <Text style={styles.sectionText}>{info.section.key}</Text>
+            </View>
         )
     }
 
@@ -47,13 +50,10 @@ class ImgList extends Component{
             <SectionList
                 sections={imageList}
                 renderItem = {(info) => this._renderItem(info)}
-                // renderSectionHeader = {(info) => this._renderSection(info)}
-                // ListFooterComponent = {() => this._footComponent()}
-                // ItemSeparatorComponent = {() => <View style={{backgroundColor:'black',width:375,height:1}}></View>}
+                renderSectionHeader = {(info) => this._renderSection(info)}
                 keyExtractor = {(item,index) => index}
                 showsHorizontalScrollIndicator ={false}
             >
-
             </SectionList>
         )
     }
@@ -84,14 +84,15 @@ export class HeaderColumn extends Component{
 
 export default class ImageListEditing extends Component{
     static navigationOptions = {
-        header:null
+        header:null,
     }
     render(){
         const {navigation} =this.props
+        const imglist = imageList.length === 0 ? <NoResult text={navigation.getParam('title')}></NoResult> : <ImgList></ImgList>
         return(
-            <View>
+            <View style={{width:toDeviceSize(750),height:toDeviceSize(3000),backgroundColor:'white'}}>
                 <HeaderColumn navigation={navigation}></HeaderColumn>
-                <ImgList></ImgList>
+                {imglist}
             </View>
         )
     }
@@ -121,6 +122,28 @@ const styles = StyleSheet.create({
         backgroundColor:"#E6E6E6",
         flex:1,
         height:toDeviceSize(1)
+    },
+    flatImg:{
+        marginLeft:toDeviceSize(18),
+        marginTop:toDeviceSize(18)
+    },
+    section:{
+        paddingLeft:toDeviceSize(30),
+        paddingTop:toDeviceSize(30),
+        // fontFamily: 'SFProText-Medlum'
+        fontSize : toDeviceSize(32),
+        textAlign :'right',
+        lineHeight: toDeviceSize(38),
+        letterSpacing:0,
+
+    },
+    sectionText:{
+             // fontFamily: 'SFProText-Medlum'
+        fontSize : toDeviceSize(32),
+        textAlign :'left',
+        lineHeight: toDeviceSize(38),
+        letterSpacing:0,
+        color:'#969CA1',
     }
     
 })

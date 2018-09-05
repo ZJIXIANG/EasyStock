@@ -1,8 +1,6 @@
 import React,{Component} from 'react'
-import {View, Text, StyleSheet, TextInput, Image, TouchableOpacity, FlatList} from 'react-native'
-import {toDeviceSize} from '../utils/sizeTransform'
-
-
+import {View, Text, StyleSheet, SectionList, Image, Modal, TouchableOpacity} from 'react-native'
+import {toDeviceSize} from '../../../utils/sizeTransform.js'
 
 
 class FirstSort extends Component{
@@ -12,9 +10,12 @@ class FirstSort extends Component{
     render(){
         const {title} = this.props
         return(
-            <View style={styles.inner}>
-                <Text style={styles.title}>{title}</Text>
-                <Image source={require('../images/Category_选择icon.png')}/>
+            <View>
+                <View style={styles.inner}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.nums}>2 items</Text>
+                    <Image source={require('../../../images/items_更多icon.png')}/>
+                </View>
             </View>
         )
     }
@@ -27,10 +28,13 @@ class SecondSort extends Component{
     render(){
         const {title} = this.props
         return(
-            <View style={styles.inner}>
-                <View style={styles.secondHorizontalLine}></View>
-                <Text style={styles.secondtitle}>{title}</Text>
-                <Image source={require('../images/Category_选择icon.png')}/>
+            <View>
+                <View style={styles.inner}>
+                    <View style={styles.secondHorizontalLine}></View>
+                    <Text style={styles.secondtitle}>{title}</Text>
+                    <Text style={styles.nums}>2 items</Text>
+                    <Image source={require('../../../images/items_更多icon.png')}/>
+                </View>
             </View>
         )
     }
@@ -43,10 +47,13 @@ class ThirdSort extends Component{
     render(){
         const {title} = this.props
         return(
-            <View style={styles.inner}>
-                <View style={styles.thirdHorizontalLine}></View>
-                <Text style={styles.thirdtitle}>{title}</Text>
-                <Image source={require('../images/Category_选择icon.png')}/>
+            <View>
+                <View style={styles.inner}>
+                    <View style={styles.thirdHorizontalLine}></View>
+                    <Text style={styles.thirdtitle}>{title}</Text>
+                    <Text style={styles.nums}>2 items</Text>
+                    <Image source={require('../../../images/items_更多icon.png')}/>
+                </View>
             </View>
         )
     }
@@ -59,9 +66,13 @@ class FourthSort extends Component{
     render(){
         const {title} = this.props
         return(
-            <View style={styles.inner}>
-                <Text style={styles.title}>{title}</Text>
-                <Image source={require('../images/Category_选择icon.png')}/>
+            <View style={styles.segmentation}>
+                <View style={styles.inner}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.nums}>2 items</Text>
+                    <Image source={require('../../../images/items_更多icon.png')}/>
+                </View>
+                {/* <View style={styles.segmentation}></View> */}
             </View>
         )
     }
@@ -122,7 +133,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         borderBottomWidth:toDeviceSize(1),
         borderBottomColor:'#E6E6E6',
-        borderStyle:'solid'
+        borderStyle:'solid',
     },
     title:{
         // fontFamily: 'SFProText-Regular'
@@ -137,7 +148,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
-        position:'relative'
+        position:'relative',
     },
     secondHorizontalLine:{
         width:toDeviceSize(44),
@@ -170,5 +181,14 @@ const styles = StyleSheet.create({
         lineHeight: toDeviceSize(34),
         position:'absolute',
         left:toDeviceSize(104)
-    }
+    },
+    nums:{
+        // fontFamily: 'SFProText-Regular'
+        fontSize : toDeviceSize(28),
+        color : '#464646',
+        textAlign :'right',
+        lineHeight: toDeviceSize(34),
+        position:'absolute',
+        right:toDeviceSize(69)
+    },
 }) 

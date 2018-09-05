@@ -1,42 +1,13 @@
 import React,{Component} from 'react'
 import {View, Text, StyleSheet, SectionList, Image, Modal, TouchableOpacity} from 'react-native'
+import {storagesList} from '../../../data.json'
+import {HeaderColumn} from '../../../CommonComponents/textEditing'
 import {createStackNavigator} from 'react-navigation'
-import {toDeviceSize} from '../../../utils/sizeTransform.js'
-import {editList} from '../../../data.json'
+import {toDeviceSize} from '../../../utils/sizeTransform'
 import TextEditing from '../../../CommonComponents/textEditing'
-import ListEditing from '../../../CommonComponents/listEditing'
-import SortEditing from '../../../CommonComponents/sortEditing'
-import ImgEditing from '../../../CommonComponents/imageListEditing'
-import Supplier,{SupplierInfo} from './supplier'
-import Storage from '../components/storagePage'
-import BigText from '../../../CommonComponents/bigtextEditing'
+import ParentStorage from './parentStorage'
 
-class DeleteModal extends Component{
-    _onRequestClose(){
-        console.log('关闭')
-    }
-    render(){
-        return(
-            <Modal 
-                visible = {true}
-                animationType = {'slide'}
-                transparent = {false}
-                onRequestClose = { () => {this._onRequestClose()}}
-            >
-                <View style={styles.modalContainer}>
-                    <View style={styles.topModal}>
-                        <Text style={styles.topModalTopText}>Delete this item?</Text>
-                        <View style={styles.topModalView}></View>
-                        <Text style={styles.topModalBottomText}>OK</Text>
-                    </View>   
-                    <View style={styles.bottomModal}>
-                        <Text style={styles.bottomModalText}>Cancel</Text>
-                    </View>
-                </View>
-            </Modal>
-        )
-    }
-}
+
 
 export class EditList extends Component{
 
@@ -52,27 +23,26 @@ export class EditList extends Component{
         )
     }
     _choicePageType(title){
-        const a = ['Name','ID Tag','Prince','Color','Stock Shortage','Color','Specific attibute'];
-        const b = ['Groups','Storage'];
-        const c = ['Category'];
-        const d = ['Photo']
-        const e = ['Description']
+        const a = ['Name',];
+        const b = ['Parent storage'];
+        // const c = ['Weight unit','Size unit'];
+        // const d = ['Photo'];
+        // const e = ['Group propertites']
         for(let i=0; i<a.length ; i++){
             if (a[i] === title) {
                 this.props.navigate('TextEditing',{title,})
             } else if(b[i] === title){
-                this.props.navigate('ListEditing',{title,})
-            } else if(c[i] === title){
-                this.props.navigate('SortEditing',{title,})
-            } else if(d[i] === title){
-                this.props.navigate('ImgEditing',{title,})
-            } else if(e[i] === title){
-                this.props.navigate('BigText',{title,})
+                this.props.navigate('ParentStorage',{title,})
             } 
-            else{
-                this.props.navigate(title,{title,})
+            // else if(c[i] === title){
+            //     this.props.navigate('WeightUnit',{title,})
+            // } else if(d[i] === title){
+            //     this.props.navigate('ImgEditing',{title,})
+            // } 
+            // else{
+            //     this.props.navigate(title,{title,})
+            // }
             }
-        }
         
       
     }
@@ -120,52 +90,37 @@ export class EditList extends Component{
     }
 }
 
-class HeaderColumn extends Component{
-    render(){
-        return(
-            <View style={styles.HeaderColumnContainer}>
-                <Text style={styles.HeaderTextLeft}>Cancel</Text>
-                <Text style={styles.HeaderTextMidd}>New Item</Text>
-                <Text style={styles.HeaderTextRight}>Done</Text>
-            </View>
-        )
-    }
-}
-
-class AddItemRoot extends Component{
-    static navigationOptions = {
-        header:null
+class AddCategory extends Component{
+    constructor(props){
+        super(props)
     }
     render(){
-        const {navigate} = this.props.navigation
+        const {navigation} = this.props
+        const {navigate} = navigation
         return(
             <View>
-                {/* <DeleteModal></DeleteModal> */}
-                <HeaderColumn></HeaderColumn>
-                <EditList navigate={navigate} editList={editList}></EditList>
+                <HeaderColumn navigation={navigation}/>
+                <EditList editList={storagesList} navigate={navigate}/>
             </View>
         )
     }
 }
 
-const AddItemStack = createStackNavigator(
+const AddCategoryStack = createStackNavigator(
     {
-        AddItemRoot,
+        AddCategory, 
         TextEditing,
-        ListEditing,
-        SortEditing,
-        ImgEditing,
-        Supplier,
-        SupplierInfo,
-        Storage,
-        BigText
+        ParentStorage
     },
     {
-        initialRouteName:'AddItemRoot',
+        navigationOptions:{
+            header:null
+        }
     }
-) 
 
-export default AddItemStack
+)
+
+export default AddCategoryStack
 
 
 const styles = StyleSheet.create({
@@ -277,63 +232,4 @@ const styles = StyleSheet.create({
         textAlign :'center',
         letterSpacing : 0,
     },
-    modalContainer:{
-        flex:1,
-        backgroundColor:'rgba(0,0,0,0.4)',
-        alignItems:'center',
-    },
-    bottomModal:{
-        width:toDeviceSize(710),
-        height:toDeviceSize(114),
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#FFFFFF',
-        borderRadius:toDeviceSize(10),
-        position:'absolute',
-        bottom:toDeviceSize(20),
-        opacity:1,
-    },
-    bottomModalText:{
-        // fontFamily: '.SFNSDisplay'
-        fontSize : toDeviceSize(40),
-        color : '#007AFF',
-        textAlign :'center',
-        letterSpacing : toDeviceSize(0.76),
-        lineHeight:toDeviceSize(47)
-    },
-    topModal:{
-        width:toDeviceSize(710),
-        height:toDeviceSize(203),
-        paddingTop:toDeviceSize(26),
-        paddingBottom:toDeviceSize(33),
-        alignItems:'center',
-        backgroundColor:'#fff',
-        opacity:1,
-        justifyContent:'space-between',
-        position:'absolute',
-        bottom:toDeviceSize(150),
-        borderRadius:toDeviceSize(10),
-    },
-    topModalTopText:{
-        // fontFamily: 'SFProDisplay-Regular'
-        fontSize : toDeviceSize(26),
-        color : '#969CA1',
-        textAlign :'center',
-        letterSpacing : 0,
-        lineHeight:toDeviceSize(36)
-    },
-    topModalView:{
-        width:toDeviceSize(710),
-        height:toDeviceSize(1),
-        backgroundColor:'#969CA1',
-        position:'absolute',
-        bottom:toDeviceSize(114)
-    },
-    topModalBottomText:{
-        // fontFamily: 'SFProDisplay-Regular'
-        fontSize : toDeviceSize(40),
-        color : '#007AFF',
-        textAlign :'center',
-        letterSpacing : toDeviceSize(1),
-    }
 })

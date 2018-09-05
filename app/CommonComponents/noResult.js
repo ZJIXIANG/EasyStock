@@ -13,7 +13,7 @@ export default class NoResultComponent extends Component{
         return(
            <View style={styles.noResultContainer}>
                <Image source={require('../images/search_无结果icon.png')} style={styles.noResultImg}/>
-               <Text style={styles.noSearchtInfo}>{this.props.text}</Text>
+               <Text style={styles.noSearchtInfo}>Add a {this.props.text}</Text>
            </View> 
         )
     }

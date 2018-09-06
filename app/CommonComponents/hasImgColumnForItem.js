@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         borderBottomWidth:2,
         borderBottomColor:'#E6E6E6',
+        backgroundColor:'white'
     },
     leftPartForImg:{
         width:toDeviceSize(140),

@@ -6,6 +6,7 @@ import {groupsItemData} from '../../image'
 import GroupsList from '../groups/components/groupsList'
 import Categories from './components/categories'
 import Storages from './components/placeOfStorage'
+import Supplier from './components/supplier'
 
 class GroupTitle extends Component{
     render(){
@@ -19,7 +20,7 @@ class GroupTitle extends Component{
     }
 }
 
-class ItemColumn extends Component{
+export class ItemColumn extends Component{
     constructor(props){
         super(props)
     }
@@ -34,7 +35,6 @@ class ItemColumn extends Component{
         } else {
             direaction = item.info
         }
-        
         return(
             <TouchableOpacity onPress={ () => navigation.navigate(direaction,{title:direaction})}>
                 <View style={styles.ItemColumnContainer}>
@@ -78,6 +78,7 @@ const GroupsStack = createStackNavigator(
         GroupsList,
         Categories,
         Storages,
+        Supplier,
     },
     {
         initialRouteName:'GroupsRoot',

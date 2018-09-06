@@ -50,7 +50,7 @@ const ItemStack = createStackNavigator(
         AddItem,
     },
     {
-        initialRouteName:'AddItem',
+        initialRouteName:'ItemRoot',
         navigationOptions:{
             header:null
         }

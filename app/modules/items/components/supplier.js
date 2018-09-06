@@ -29,7 +29,7 @@ class SelectGroup extends Component{
             <Modal
                 visible = {true}
                 animationType = {'slide'}
-                transparent = {false}
+                transparent = {true}
                 onRequestClose = { () => {this._onRequestClose()}}
             >
                 <View style={styles.modalContainer}>
@@ -90,7 +90,7 @@ export class SupplierInfo extends Component{
 
 
 
-class SupplierList extends Component{
+export class SupplierList extends Component{
     static navigationOptions = {
         header:null
     }
@@ -103,8 +103,7 @@ class SupplierList extends Component{
             <View>
                 <View style={styles.container}>
                     <Text style={styles.groups}>{item.item.group}</Text>
-                    <Text style={styles.prince}>{item.item.prince}</Text>
-                    <Text style={styles.doller}>$</Text>
+                    <Text style={styles.prince}>{item.item.prince}$</Text>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SupplierInfo')}>
                         <Image source={require('../../../images/items_更多icon.png')} style={styles.img}></Image>
                     </TouchableOpacity>
@@ -114,9 +113,10 @@ class SupplierList extends Component{
     }
 
     render(){
+        const {data} = this.props 
         return(
             <FlatList
-                data = {supplierData}
+                data = {data}
                 renderItem ={(item) => this._renderItem(item)}
                 keyExtractor ={(item,index) => item.id}
             >
@@ -135,7 +135,7 @@ export default class Supplier extends Component{
     }
     render(){
         const {navigation} = this.props
-        const supplierList = supplierData.length == 0 ? <NoResult text={navigation.getParam('title')}/> : <SupplierList navigation={navigation}/>
+        const supplierList = supplierData.length == 0 ? <NoResult text={navigation.getParam('title')}/> : <SupplierList navigation={navigation} data={supplierData}/>
         return(
             <View style={{width:toDeviceSize(750),height:noSearchHeight,backgroundColor:'white'}}>
                 <HeaderColumn navigation={navigation}></HeaderColumn>
@@ -175,15 +175,8 @@ const styles = StyleSheet.create({
         color : '#464646',
         textAlign :'right',
         lineHeight: toDeviceSize(34),
-        position:'relative',
-        left:toDeviceSize(30)
-    },
-    doller:{
-        // fontFamily: 'SFProText-Regular'
-        fontSize : toDeviceSize(28),
-        color : '#464646',
-        textAlign :'right',
-        lineHeight: toDeviceSize(34),
+        position:'absolute',
+        right:toDeviceSize(69),
     },
     img:{
         width:toDeviceSize(24),

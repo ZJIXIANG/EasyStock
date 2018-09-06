@@ -12,7 +12,6 @@ export class HeaderColumn extends Component{
     render(){
         const {navigation} = this.props
         const title = navigation.getParam('title')
-        console.log(title)
         return(
             <View style={styles.HeaderColumnContainer}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>

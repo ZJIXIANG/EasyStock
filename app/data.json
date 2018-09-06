@@ -201,6 +201,55 @@
                 {"title":"Add existing item","value":"nothin"}
             ]
         }
+    ],
+    "groupSupplierData":[
+        {"key" : "Name" , "data" : [{"title":"Name","value":"cable"}]},
+        {"key" : "Contact" , "data" : [
+                {"title":"Name","value":"Warehose"},
+                {"title":"Telephone","value":"a-male"},
+                {"title":"Email","value":2324234324324}
+            ]
+        },
+        {"key" : "Address" , "data" : [
+                {"title":"Address 1","value":"white"},
+                {"title":"Address 2 (optional)","value":"nothin"},
+                {"title":"Zip code,City","value":"nothin"},
+                {"title":"State","value":"nothin"},
+                {"title":"Country","value":"nothin"}
+            ]
+        },
+        {"key" : "Items" , "data" : [
+                {"title":"Add new item","value":"white"},
+                {"title":"Add existing item","value":"nothin"}
+            ]
+        }
+    ],
+    "addressListData":[
+        {"title":"Address 1"},
+        {"title":"Address 2 (optional)"},
+        {"title":"city"},
+        {"title":"State"},
+        {"title":"Zip Code"}
+    ],
+    "overViewBottomList":[
+        {"title":"Item List"},
+        {"title":"Export"}
+    ],
+    "statistics":[
+        {"title":"Items Group","value":"Sample Group"},
+        {"title":"Number of items","value":9},
+        {"title":"Total quantity","value":12},
+        {"title":"Total value","value":"$ 17,861.57"},
+        {"title":"Total cost","value":"$ 17,861.57"},
+        {"title":"Total weight","value":12},
+        {"title":"Total volume","value":12},
+        {"title":"Number of categories","value":12},
+        {"title":"Number of places of storage","value":12},
+        {"title":"Number of places of storage","value":12}
+        
+
     ]
+
+
 
 }
